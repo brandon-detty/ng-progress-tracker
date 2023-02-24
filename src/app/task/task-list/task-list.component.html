@@ -1,0 +1,5 @@
+<h3>Tasks</h3>
+<ul>
+    <li *ngFor="let task of tasks">{{task.title}}</li>
+</ul>
+<app-task-overview *ngIf="tasks.length" [task]="tasks[0]" />
