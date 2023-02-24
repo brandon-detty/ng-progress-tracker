@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { TaskService } from 'src/app/services/task.service';
 import { Task } from 'src/models/Task';
 
 @Component({
@@ -10,11 +12,10 @@ export class TaskBrowserComponent implements OnInit {
   tasks: Task[] = [];
   selectedTask?: Task;
 
+  constructor(private taskService: TaskService) {}
+
   ngOnInit(): void {
-    this.tasks = [
-      { id: 1, title: 'My First Task' },
-      { id: 2, title: 'Another Thing to Do' },
-    ];
+    this.taskService.getTasks().subscribe((t) => (this.tasks = t));
   }
 
   setSelectedTask(taskId?: Task['id']) {
