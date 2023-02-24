@@ -1,0 +1,3 @@
+<h2>task-browser</h2>
+<app-task-list [tasks]="tasks" (taskClick)="setSelectedTask($event)" />
+<app-task-overview *ngIf="selectedTask" [task]="selectedTask" />

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Task } from 'src/models/Task';
 
 @Component({
@@ -6,13 +6,12 @@ import { Task } from 'src/models/Task';
   templateUrl: './task-list.component.html',
   styleUrls: ['./task-list.component.scss'],
 })
-export class TaskListComponent implements OnInit {
-  tasks: Task[] = [];
+export class TaskListComponent {
+  @Input() tasks: Task[] = [];
 
-  ngOnInit(): void {
-    this.tasks = [
-      { id: 1, title: 'My First Task' },
-      { id: 2, title: 'Another Thing to Do' },
-    ];
+  @Output() taskClick = new EventEmitter();
+
+  onTaskClick(taskId: Task['id']) {
+    this.taskClick.emit(taskId);
   }
 }
